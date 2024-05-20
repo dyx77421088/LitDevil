@@ -101,7 +101,7 @@ Material:
     - _Height1: 2.33
     - _HorizontalPow: -0.14
     - _MagmaMaskRange: 0.84
-    - _MaskPercentage: 1
+    - _MaskPercentage: 0
     - _MaskSoft: 2
     - _MaskSoft1: 0.77
     - _Metallic: 0

@@ -43,8 +43,8 @@ function SceneJackpotView:Move(jackpotIndex, pos, callBk)
 	G_printerror("我保存了这个缩放了", self.scale)
 	
 	transform.localScale = Vector3(0, 0, 0)
-	transform:DOMove(pos, 3)
-	transform:DOScale(Vector3(1.2, 1.2, 1.2), 3):SetEase(EaseType.OutQuad):OnComplete(callBk)
+	transform:DOMove(pos, ConfigData.jackpotMoveTime)
+	transform:DOScale(Vector3(1.2, 1.2, 1.2), ConfigData.jackpotMoveTime):SetEase(EaseType.OutQuad):OnComplete(callBk)
 
 	-- 暂时不移动了
 	-- callBk()
@@ -65,7 +65,7 @@ function SceneJackpotView:Hide(jackpotId, callBk)
 		-- self.jackpots[jackpotId].particle:Stop()
 
 		local transform = self.jackpots[jackpotId].rectTransform
-		transform:DOMove(self.pos, 3)
+		transform:DOMove(self.pos, ConfigData.jackpotMoveTime)
 		G_printerror("这个位置的缩放是", self.scale)
 		transform:DOScale(self.scale, 3):SetEase(EaseType.OutQuad):OnComplete(callBk)
 	end
@@ -80,7 +80,7 @@ function SceneJackpotView:Play(arguments)
 	-- self.jackpots[self.jackpotIndex].particle:Play()
 	self.jackpots[self.jackpotIndex].num.gameObject:SetActive(true)
 	-- 滚分
-	self.jackpots[self.jackpotIndex].num:ScrollNum(startScore, endScore, 0, 3):OnComplete(function ()
+	self.jackpots[self.jackpotIndex].num:ScrollNum(startScore, endScore, 0, ConfigData.jackpotScrollTime):OnComplete(function ()
 		-- 滚分完成之后数字要缩放一下
 		self.jackpots[self.jackpotIndex].num.transform:DOScale(1.5, 0.5):OnComplete(function()
 			self.jackpots[self.jackpotIndex].num.transform:DOScale(1, 0.2):OnComplete(function()

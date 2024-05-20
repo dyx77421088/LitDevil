@@ -142,18 +142,22 @@ local ConfigData = {
 	-- forkRepWildPos = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}},
 	caijin = {"MINI", "MINOR", "MAJOR", "MEGA", "GRAND"}, -- 彩金(在恶魔下方显示的spine)
 	caijin2 = {"JACKPOT", "MINOR", "MAJOR", "MEGA", "GRAND"}, -- 彩金(屏幕中间的spine)
-	isChangeJackpot = false, -- 是否改变从1开始改变彩金
+
+	-- sceneJackpot 相关的
+	isChangeJackpot = true, -- 是否改变从1开始改变彩金
 	isMoveJackpot = true,  -- 场景上的彩金否移动
+	jackpotMoveTime = 1, -- 移动时间
+	jackpotScrollTime = 1, -- 滚分的时间
 
 	useCamera = false, -- 是否使用摄像机观察npc
 
-	debugFireBall = true, -- debug火球，时间缩放为debugTimeScale
-	debugTimeScale = 1, -- debug的倍速
+	debugFireBall = false, -- debug火球，时间缩放为debugTimeScale
+	debugTimeScale = 0.2, -- debug的倍速
 
 	debugFreeToNormal = false, -- debug免费游戏到普通游戏
 	debugFreeToNormalZaDiTimeScale = 1, -- 大恶魔砸地速度
 	debugFreeToNormalXEMTimeScale = 1, -- 小恶魔出来的速度
-	timeScale = 1, -- 最初的速度
+	timeScale = 2, -- 最初的速度
 }
 Time.timeScale = ConfigData.timeScale
 return ConfigData

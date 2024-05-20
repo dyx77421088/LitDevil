@@ -211,6 +211,8 @@ function RollView:RevealSwitch(...)
 end
 
 function RollView:RevealEffect(...)
+	-- 更改roll中的box (修改跟随的特效)
+	self.RollFireBallView:updateFollowBox(true)
 	local type, index = select(1, ...)
 	if type == Const.RollViewEMO.RevealEffect.Magma then
 		self.magmaView:ShowYanjiang(index) -- 显示岩浆

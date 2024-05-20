@@ -11,9 +11,9 @@ GameResult = BaseClass("GameResultEditor", GameResult)
 function GameResult:GenerateForGive()
 	local container = {
 		-- '{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[12,14,5,0,8,8,0,5,0,8,2,2,5,5,8],"WildData":[1,0,1,0,1],"WheelBet":20000 ,"TotalBet":0}', -- bigwin
-		'{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[12,14,5,0,8,8,12,5,12,8,2,2,5,5,8],"WildData":[1,0,1,0,1],"WheelBet":20000 ,"TotalBet":0}', -- bigwin之后免费
+		-- '{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[12,14,5,0,8,8,12,5,12,8,2,2,5,5,8],"WildData":[1,0,1,0,1],"WheelBet":20000 ,"TotalBet":0}', -- bigwin之后免费
 		-- '{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[14,12,5,0,8,8,0,5,0,8,2,2,5,5,8],"WildData":[1,0,1,0,1],"WheelBet":10000 ,"TotalBet":0}', -- mini
-		-- '{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[14,12,5,0,8,8,0,5,0,8,2,2,5,5,8],"WildData":[1,0,1,0,1],"WheelBet":50000 ,"TotalBet":0}', -- grand
+		'{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[14,12,5,0,8,8,0,5,0,8,2,2,5,5,8],"WildData":[1,0,1,0,1],"WheelBet":50000 ,"TotalBet":0}', -- grand
 		-- '{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[12,12,12,0,8,8,0,5,0,8,2,12,5,12,8],"WildData":[0,0,0,0,0],"TotalBet":0}', -- 赠送局
 		-- '{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[0,0,0,0,0,1,1,1,1,1,0,6,1,1,11],"WildData":[0,0,0,0,0],"TotalBet":0}', -- 普通得分
 		-- '{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[0,0,0,0,0,1,1,1,1,1,0,6,1,1,11],"WildData":[1,0,0,0,0],"TotalBet":0}', -- 普通得分
@@ -70,14 +70,14 @@ function GameResult:GenerateForLose(appointId)
 		-- -- 普通得分
 		-- '{"OpenType":1,"ResultType":0,"IDVec":[],"Matrix":[0,0,0,0,0,1,1,1,1,1,0,6,1,1,11],"WildData":[0,0,0,0,0],"TotalBet":0}', 
 		-- -- 普通的丢金币
-		'{"OpenType":0,"ResultType":1,"IDVec":[9303,16303,17303,20303],"Matrix":[7,7,3,7,4,3,3,1,1,1,4,3,3,4,4],"WildData":[0,2,2,1,1],"TotalBet":160}', 
+		-- '{"OpenType":0,"ResultType":1,"IDVec":[9303,16303,17303,20303],"Matrix":[7,7,3,7,4,3,3,1,1,1,4,3,3,4,4],"WildData":[0,2,2,1,1],"TotalBet":160}', 
 		-- 丢火球但只有普通得分
 		-- '{"OpenType":0,"ResultType":1,"IDVec":[9303,16303,17303,20303],"Matrix":[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5],"WildData":[1,1,2,1,1],"TotalBet":160}', 
 		-- '{"OpenType":0,"ResultType":1,"IDVec":[9303,16303,17303,20303],"Matrix":[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5],"WildData":[1,0,2,1,1],"TotalBet":160}', 
 		-- '{"OpenType":0,"ResultType":1,"IDVec":[9303,16303,17303,20303],"Matrix":[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5],"WildData":[1,0,2,1,1],"TotalBet":160}', 
 		-- '{"OpenType":0,"ResultType":1,"IDVec":[9303,16303,17303,20303],"Matrix":[1,2,3,4,5,1,2,3,4,5,1,2,3,4,5],"WildData":[1,0,2,1,1],"TotalBet":160}', 
 		-- -- 丢到叉子上分裂
-		-- '{"OpenType":0,"ResultType":0,"IDVec":[],"Matrix":[2,10,10,12,8,8,0,5,0,8,2,2,5,5,8],"WildData":[12,1,3,0,1],"TotalBet":0}', 
+		'{"OpenType":0,"ResultType":0,"IDVec":[],"Matrix":[2,10,10,12,8,8,0,5,0,8,2,2,5,5,8],"WildData":[12,1,3,0,1],"TotalBet":0}', 
 		-- 进入免费局
 		'{"OpenType":0,"ResultType":0,"IDVec":[],"Matrix":[12,12,12,0,8,12,12,5,12,8,2,2,5,12,8],"WildData":[0,0,0,0,0],"TotalBet":0}', 
 		-- bigwin之后再免费局

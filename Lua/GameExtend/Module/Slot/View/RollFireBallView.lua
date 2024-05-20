@@ -91,10 +91,12 @@ function RollFireBallView:OnLoadFireBallBrustObject(arguments, object)
 	downItem.transform.position = arguments.targetPos
 	downItem.transform.localScale = Vector3(1, 1, 1)
 	downItem.particle:Play()
-	-- 在火球爆炸持续时间的一半后替换成金币
+	-- 在火球爆炸持续时间 的一些时间 后替换成金币
 	Globals.timerMgr:AddTimer(function ()
 		if arguments.callBack then arguments.callBack() end
-	end, 0, ConfigData.fireBall.rollBrustTime / 2)
+		-- 修改跟随的特效
+		self:updateFollowBox(false)
+	end, 0, ConfigData.fireBall.rollBrustTime / 3)
 
 	Globals.timerMgr:AddTimer(function()
 		downItem.particle:Stop()
@@ -122,6 +124,8 @@ function RollFireBallView:OnLoadFireBallBrustObject(arguments, object)
 			else
 				self.frupsChess:LoadFollower()
 			end
+
+			
 		end
 	end, 0, ConfigData.fireBall.rollBrustTime)
 	LMessage:Dispatch(LuaEvent.Sound.Play, "effect_coin", 3)
@@ -137,6 +141,9 @@ function RollFireBallView:addWild(addValue)
 		self.changeWildData[value[1]] = value[2] <= 0 and 0 or value[2] + self.changeWildData[value[1]] * (10 ^ #tostring(value[2]))
 	end
 end
+
+
+
 -- 检测这个火球是否已经是OK的了 
 function RollFireBallView:CheckFireBallIsOk(fireBall)
 	if not fireBall then return true end
@@ -196,12 +203,6 @@ function RollFireBallView:ChessesReplaceWild(col, row, fireBall)
 	else -- 如果是普通棋子，那就直接替换
 		fireBall.isOk = true
 		self.chesses[col][row]:ResetResult(Const.ChessType.Wild, true)
-
-		local seq = DOTween.Sequence();
-		seq:Append(self.chesses[col][row].follower[2].transform:DOScale(0.8, 0.1):SetEase(EaseType.OutQuad))
-		seq:Append(self.chesses[col][row].follower[2].transform:DOScale(1.2, 0.1):SetEase(EaseType.OutQuad))
-		seq:Append(self.chesses[col][row].follower[2].transform:DOScale(1, 0.1):SetEase(EaseType.OutQuad))
-		seq:Play()
 		return true
 	end
 	return false
@@ -337,6 +338,35 @@ function RollFireBallView:RevealSceneFireBallToFork(pos, parent)
 	end
 end
 -------------------------------------#endregin------------------------------------------------------------
+-- 跟随棋子的发光特效 active：是否显示， 因为只有在获得结果的时候才是要显示的
+function RollFireBallView:updateFollowBox(active)
+	G_printerror("我就来修改特效了啊啊啊啊啊啊啊啊啊啊啊")
+	local findNmae = "ng_eff_box"
+	-- self.chesses[col][row].follower[2].transform
+	for i = 1, ConfigData.roll.columns do -- 列数
+		for j = 1, ConfigData.roll.rows do -- 行数
+			local childs = TransformUtils.GetAllChilds(self.chesses[i][j].follower[2].transform)
+			if #childs > 0 then
+				local t = childs[1]:Find(findNmae)
+				if t then
+					if not active then 
+						t.transform.gameObject:SetActive(false) 
+					else -- 改变缩放
+						t.transform.gameObject:SetActive(true) 
+						-- 有一些棋子过于大了，所以在外部是给它有一个缩放的如金币 (0.85, 0.85, 1)
+						local sf = self.chesses[i][j].follower[2].transform.localScale.x
+						-- 为了使它保持在16的缩放，所以要再乘以 1 / sf
+						t.transform.localScale = Vector3(16, 16, 16) * (1 / sf)
+					end
+				end
+				
+			else
+				G_printerror("没有childs", self.chesses[i][j].follower[2].transform.name)
+			end
+		end
+	end
+end
+
 -- 一局完成之后重置 统计的 火球表等一些数据
 function RollFireBallView:ResetData()
 	table.clear(self.wildData)
